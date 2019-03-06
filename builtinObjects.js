@@ -46,23 +46,20 @@ console.log(alphabetical("Webmaster"));
 // 	"Republic Of Serbia" -> "Rbceilpu Of Sabeir"
 
 
-    function Alphabetize(str){
-        var splited = str.split("");
-       
-        for(var i = 0; i < splited.length; i++){
-            for(var j = 0; j < splited[i].length; j++){
+function Alphabetize(str) {
+    var toStr = new String(str)
+    var splited = toStr.split(" ");
+    var result = [];
+    for (var i = 0; i < splited.length; i++) {
 
-                var sorted = splited[i][j]
-                
-            }
-        }
-            return sorted
-        //return splited
+        result.push(splited[i].split("").sort().join(""))
+
     }
+    return result.join(" ")
 
-    console.log(Alphabetize("Republic Of Serbia"))
+}
 
-
+console.log(Alphabetize("Republic Of Serbia"))
 
 
 
@@ -86,21 +83,16 @@ console.log(splitString("John Snow"));
 // 	"John Snow" -> "John S."
 
 
-function abbreviatedForm(str){
+function abbreviatedForm(str) {
 
     var splited = str.split(" ")
-    for(var i =0; i < splited.length; i++){
-        if(typeof splited[i] !== "string") return ""
+    for (var i = 0; i < splited.length; i++) {
+        if (typeof splited[i] !== "string") return ""
         return splited[0] + " " + splited[1][0] + "."
     }
-    return splited
+
 }
-console.log(abbreviatedForm("John Snow"))
-
-
-
-
-
+console.log(abbreviatedForm("Zoran Sudimac"))
 
 
 
@@ -109,18 +101,39 @@ console.log(abbreviatedForm("John Snow"))
 // 	'0000', 123, 'l' -> 0123
 // '00000000', 123, 'r' -> 12300000
 
+function pad(str, num, input) {
+
+    var splited = str + num;
+
+
+    if (input === "l") {
+        return splited.slice(-str.length)
+
+    }
+    if (input === "r") {
+        return (num + str).slice(0, str.length)
+    }
+
+}
+
+console.log(pad("0000", 123, "l"))
+
+123000000
+
+
+
 // TASK 8 - Write a function to capitalize the first letter of a string and returns modified string.
 
 // "js string exercises" -> "Js string exercises"
 
 
-    function capitalize(str){
+function capitalize(str) {
 
-        if(typeof str !== "string")
-            return ""
-            return str.charAt(0).toUpperCase() + str.slice(1)
-        
-    }
+    if (typeof str !== "string")
+        return ""
+    return str.charAt(0).toUpperCase() + str.slice(1)
+
+}
 console.log(capitalize("js string exercises"))
 
 
@@ -131,11 +144,16 @@ console.log(capitalize("js string exercises"))
 // 	"somerandomaddress@example.com" -> "somerand...@example.com"
 
 
+function protectAddress(str) {
+
+
+    var findIndex = str.indexOf("@");
+    return "..." + str.slice(findIndex)
 
 
 
-
-
+}
+console.log(protectAddress("somerandomaddress@example.com"))
 
 
 // TASK 10 - Write a program that accepts a string as input and swaps the case of each character.For example, if you input 'The Quick Brown Fox', the output should be 'tHE qUICK bROWN fOX'.
@@ -144,34 +162,42 @@ console.log(capitalize("js string exercises"))
 
 // "The Quick Brown Fox" -> "tHE qUICK bROWN fOX"
 
-        function caseLetters(str){
 
-            
-            
-            
-            var toSmall = str.toUpperCase().split(" ");
-            for(var i = 0; i < toSmall.length; i++){
-                if(typeof toSmall[i] !== "string")return ""
-                return toSmall[i].charAt(0).toLowerCase() + toSmall[i].slice(1).toUpperCase();
-            }
-            return toSmall
-        }
-        console.log(caseLetters("The Quick Brown Fox"))
-////////////
+function caseLetters(str) {
 
-        function caseLetters(str){
 
-            
-            
-            
-            var toSmall = str.toUpperCase().split(" ");
-            for(var i = 0; i < toSmall.length; i++){
-                for(var j = 0; j <  toSmall[i].length; j++){
-                if(typeof toSmall[i] !== "string")return ""
-                return toSmall[i][j].charAt(0).toLowerCase() + toSmall[i][j].slice(1).toUpperCase();
-            }
+    var arr = []
+
+    var toSmall = str.toUpperCase().split(" ");
+    for (var i = 0; i < toSmall.length; i++) {
+
+        arr[i] = toSmall[i].charAt(0).toLowerCase() + toSmall[i].slice(1).toUpperCase();
+    }
+    return arr.join(" ")
+}
+console.log(caseLetters("ZoRaN"));
+
+//////////////////////
+
+function caseLetters(str) {
+
+    var UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var LOWER = 'abcdefghijklmnopqrstuvwxyz';
+    var result = []
+    for (var i = 0; i < str.length; i++) {
+
+        if (UPPER.indexOf(str[i]) !== -1) {
+            result.push(str[i].toLowerCase())
+        } else if (LOWER.indexOf(str[i]) !== -1) {
+            result.push(str[i].toUpperCase())
+        } else {
+            result.push(str[i])
         }
-            return toSmall
-        }
-        console.log(caseLetters("The Quick Brown Fox"))
+
+
+    }
+    return result.join("")
+
+}
+console.log(caseLetters("ZoRaN BrownedAflex"));
 

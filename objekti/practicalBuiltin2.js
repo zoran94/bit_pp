@@ -20,9 +20,21 @@ function getDuplicates(arr) {
     }
     return newArr
 }
-console.log(getDuplicates([2, 4, 7, 11, -2, 1]));
+console.log(getDuplicates([2, 4, 7, 11 - 2, 1]));
 
 
 // Task 2 Write a functional expression that removes all duplicates in a given array.
 // Input: [8, 13, 8, 9, 12, 8, 1, 1, 4, 13]
 // Output: [1, 4, 8, 9, 12, 13] 
+
+
+function remDups(arr) {
+    var arrOne = [];
+    var sort = arr.sort(function (a, b) {
+        return a - b;
+    })
+
+}
+
+
+

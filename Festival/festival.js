@@ -1,4 +1,3 @@
-'use strict'
 
 
 (function(){
@@ -7,7 +6,7 @@
         this.name= name;
 
         this.getData = function(){
-            return this.name.charAt(0) + "" + this.name[this.name.length - 1].toUpperCase();
+            return this.name.charAt(0).toUpperCase() + "" + this.name[this.name.length - 1].toUpperCase();
         };
     };
     
@@ -15,17 +14,16 @@
     function Movie(title, length, genre){
         this.title = title;
         this.length = length;
-        this.genre = genre;
-
+    
         this.getData = function(){
-            return this.title + ", " +  this.length + "min, " + this.genre.getData();
+            return this.title + ", " +  this.length + "min, " + genre.getData();
         };
         
     };
   
 
     function Program(date){
-        this.date = new Date();
+        this.date = new Date(date);
         this.movieList = [];
         this.totalNumOfMovies = 0;
 
@@ -36,18 +34,15 @@
 
         this.getData = function(){
             var movieLength = 0;
+            var formatedStr = "";
             
             for(var i = 0; i < this.movieList.length; i++){
                 movieLength+=this.movieList[i].length;
+                formatedStr+=this.movieList[i].getData() + "\n"
                 
             };
-            var firstLine = "\t" + this.date.getDate() + "." + (this.date.getMonth() + 1) + "." + this.date.getFullYear() + ". Program length from all movies: " + movieLength + " minutes.";
-            var formatedStr = "";
-            for(var j = 0; j < this.movieList.length; j++){
-                formatedStr+= "\n\t\t" + this.movieList[j].getData();
-            };
-            return firstLine + formatedStr;
-
+            
+                return this.date + ", " + "program duration " + movieLength + "\n" + formatedStr;
         }
     };
 
@@ -55,59 +50,69 @@
     function Festival(name){
         this.name = name;
         this.programList  = [];
-        this.numOfMovies = 0;
+        
 
         this.addProgram = function(program){
             this.programList.push(program);
-            this.numOfMovies +=program.numOfMovies;
+          
         };
 
         this.getData = function(){
-            var sentence =  this.name + " festival has " + this.numOfMovies + " movie titles\n"
+
+            var sentence = 0;
                 var sentenceTwo = "";
                 for(var i = 0; i < this.programList.length; i++){
+                    sentence+=this.programList[i].totalNumOfMovies;
                     sentenceTwo+= this.programList[i].getData() + "\n";
                    
                 };
-                return sentence + sentenceTwo;
+               console.log( this.name + " has " + sentence + " movie titles \n" + sentenceTwo)
         }
         
     };
 
-    function createMovie(title, length, genre){
-                return new Movie(title, length, genre)
-    };
+
+    var action = new Genre("action");
+    var drama = new Genre("drama");
+    var adventure = new Genre("adventure")
+    var comedy = new Genre("comedy");
+
+
+        function createMovie(title, length, genre){
+            return new Movie(title, length, genre)
+        }
+
+    var movie1 = new Movie("Johnwick", 123, action);
+    var movie2 = new Movie("Luckyone", 120, drama);
+    var movie3 = new Movie("Indianajones", 135, adventure);
+    var movie4 = new Movie("JonnyEnglish", 180, comedy);
 
     function createProgram(date){
         return new Program(date)
-    };
+    }
+    var program1 = new Program("08.10.2018");
+    var program2 = new createProgram("11.12.2020");
+
+    var fest = new Festival("Weekend");
+
+    program1.addMovie(movie1);
+    program1.addMovie(movie2);
+    program2.addMovie(movie3);
+    program2.addMovie(movie4);
+
+    fest.addProgram(program1);
+    fest.addProgram(program2);
 
 
-    var action = new Genre("Action");
-    var adventure = new Genre("Adventure");
-    var comedy = new Genre("Comedy");
-
-    var johnWick = new createMovie("John Wick", 150, action);
-    var indianaJones = new createMovie("Indiana Jones", 90, adventure);
-    var americanPie = new createMovie("American pie", 125, comedy);
-    var escapePlan = new createProgram("EscapePlan", 120, action)
-
-    var program1 = new createProgram("12.05.2019");
-    var program2 = new createProgram("03.09.2020");
-
-    program1.addMovie(johnWick);
-    program1.addMovie(indianaJones);
-    program2.addMovie(americanPie);
-    program2.addMovie(escapePlan);
-    
-    var week = new Festival("Weekend");
-
-    week.addProgram(program1);
-    week.addProgram(program2);
-
-    console.log(week.getData())
+    // console.log(program1.addMovie(movie1));
+    // console.log(program2.addMovie(movie3));
+    // console.log(fest.addProgram(program1))
+     console.log(fest.getData());
    
 
 
 
 })()
+
+
+

@@ -6,11 +6,14 @@ var $button = document.querySelector("button");
 var movies = [];
 
 function onCreateMovie() {
+    
     this.movieValue = $movie.value;
     this.lengthValue = $length.value;
     this.genreValue = $genre.value;
 
-    console.log(this.movieValue, this.lengthValue);
+    console.log(this.movieValue);
 }
-var movieOne = new onCreateMovie();
-$button.addEventListener("click", onCreateMovie())
+//var movieOne = new onCreateMovie();
+$button.addEventListener("click", onCreateMovie());
+
+

@@ -14,7 +14,7 @@
 
     function Seat(number, category) {
         this.number = number || Math.round(Math.random() * 100) + 10;
-        this.category = category || "e";
+        this.category = category || "economy";
 
         this.getDataSeat = function () {
             return this.number + ", " + this.category;
@@ -35,7 +35,15 @@
 
         this.addPassenger = function (passenger) {
             this.passengerList.push(passenger);
+
+            if(this.passengerList.length > 100){
+                return "there are no seats"
+            };
+
+
         };
+
+
 
         this.getDataFlight = function () {
             var allPassengers = "";
@@ -89,8 +97,8 @@
     var personFour = new Person("Russ", "Bolton");
 
     var seatOne = new Seat();
-    var seatTwo = new Seat(12, "b");
-    var seatThree = new Seat(15, "e");
+    var seatTwo = new Seat(15, "bussines");
+    var seatThree = new Seat(15, "economy");
     var seatFour = new Seat(32);
 
     var passengerOne = new CreatePassenger(personOne, seatThree);
@@ -117,20 +125,21 @@
 })()
 
 
-function remove(str){
 
-    var splited = str.split("");
 
-var str2 = "";
-    for(var i = 0; i < splited.length; i++){
-        if(splited[i] !== "a" && splited[i] !== "e" && splited[i] !== "i" && splited[i] !== "o" && splited[i] !== "u" ){
-            str2+=splited[i]
-        }
-    }
-    var toSplit = str2.split("-");
-    var first =  toSplit[0].charAt(0) + toSplit[0].charAt(toSplit[0].length - 1).toUpperCase(); 
-    var second = toSplit[1].charAt(0) + toSplit[1].charAt(toSplit[1].length - 1).toUpperCase(); 
-    return first + "-" + second;
-}
-console.log(remove("Belgrade-Paris"))
 
+// this.remove = function(relation){
+
+//     var splited = relaton.split("");
+
+//     var str2 = "";
+//     for(var i = 0; i < splited.length; i++){
+//         if(splited[i] !== "a" && splited[i] !== "e" && splited[i] !== "i" && splited[i] !== "o" && splited[i] !== "u" ){
+//             str2+=splited[i]
+//         }
+//     }
+//     var toSplit = str2.split("-");
+//     var first =  toSplit[0].charAt(0) + toSplit[0].charAt(toSplit[0].length - 1).toUpperCase(); 
+//     var second = toSplit[1].charAt(0) + toSplit[1].charAt(toSplit[1].length - 1).toUpperCase(); 
+//     return first + "-" + second;
+// }

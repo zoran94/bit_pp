@@ -1,8 +1,8 @@
-function remove(str){
+this.remove = function(relation){
 
-    var splited = str.split("");
+    var splited = relaton.split("");
 
-var str2 = "";
+    var str2 = "";
     for(var i = 0; i < splited.length; i++){
         if(splited[i] !== "a" && splited[i] !== "e" && splited[i] !== "i" && splited[i] !== "o" && splited[i] !== "u" ){
             str2+=splited[i]
@@ -13,5 +13,3 @@ var str2 = "";
     var second = toSplit[1].charAt(0) + toSplit[1].charAt(toSplit[1].length - 1).toUpperCase(); 
     return first + "-" + second;
 }
-console.log(remove("Belgrade-Paris"))
-

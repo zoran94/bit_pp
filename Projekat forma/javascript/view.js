@@ -2,8 +2,8 @@ var $movie = document.querySelector(".movie");
 var $length = document.querySelector(".length");
 var $genre = document.querySelector("select");
 var $button = document.querySelector("button");
-var $moviesList = document.querySelector("div");
-
+var $moviesList = document.querySelector(".right");
+var $getDiv = document.querySelector(".er");
 
 
 function renderMovie(arr) {
@@ -31,3 +31,15 @@ function clearMovie() {
     $length.value = "";
     $genre.value = "";
 };
+
+
+function printError() {
+    $getDiv.classList.add("error")
+    var par = document.createElement("p");
+    par.textContent = "Please, fill out this form!"
+    $getDiv.appendChild(par);
+};
+
+function clear() {
+    $getDiv.textContent = ""
+}

@@ -1,19 +1,17 @@
-var $movie = document.querySelector(".movie");
-var $length = document.querySelector(".length");
-var $genre = document.querySelector("select");
-var $button = document.querySelector("button");
 
 var movies = [];
 
-function onCreateMovie() {
-    
-    this.movieValue = $movie.value;
-    this.lengthValue = $length.value;
-    this.genreValue = $genre.value;
+function onCreateMovie(e) {
+    e.preventDefault();
 
-    console.log(this.movieValue);
-}
-//var movieOne = new onCreateMovie();
-$button.addEventListener("click", onCreateMovie());
+    var movieData = getMovieData()
+    var makeMovie = createMovie(movieData.title, movieData.length, movieData.genre);
+    movies.push(makeMovie);
+    renderMovie(movies);
+    clearMovie();
 
+};
+
+
+$button.addEventListener("click", onCreateMovie);
 

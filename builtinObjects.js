@@ -47,12 +47,13 @@ console.log(alphabetical("Webmaster"));
 
 
 function Alphabetize(str) {
-    var toStr = new String(str)
-    var splited = toStr.split(" ");
+    // var toStr = new String(str)
+    // var splited = toStr.split(" ");
     var result = [];
-    for (var i = 0; i < splited.length; i++) {
+    var a = str.split(" ")
+    for (var i = 0; i < a.length; i++) {
 
-        result.push(splited[i].split("").sort().join(""))
+        result.push(a[i].split("").sort().join(""))
 
     }
     return result.join(" ")
@@ -86,10 +87,10 @@ console.log(splitString("John Snow"));
 function abbreviatedForm(str) {
 
     var splited = str.split(" ")
-    for (var i = 0; i < splited.length; i++) {
-        if (typeof splited[i] !== "string") return ""
-        return splited[0] + " " + splited[1][0] + "."
-    }
+
+
+    return splited[0] + " " + splited[1].charAt(0) + "."
+
 
 }
 console.log(abbreviatedForm("Zoran Sudimac"))

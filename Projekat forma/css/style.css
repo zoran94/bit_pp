@@ -3,14 +3,6 @@
     box-sizing: border-box;
 }
 
-html {
-    height: 100%;
-}
-
-body {
-    height: 100%;
-    
-}
 
 
 
@@ -42,7 +34,7 @@ button{
 }
 
 .right {
-    height: 300px;
+    height: 150px;
     width: 400px;
     background: gray;
     color: white;
@@ -64,3 +56,6 @@ button{
     text-align: center;
     font-size: 30px;
 }
+
+
+

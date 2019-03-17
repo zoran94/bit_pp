@@ -19,3 +19,18 @@ function createMovie(title, length, genre) {
     return new Movie(title, length, newGenre);
 }
 
+
+////// create Program
+
+function Program(program, date){
+    this.program = program;
+    this.date = date;
+    this.movieList = [];
+    this.getDataProgram = function(){
+       return this.program + " " + this.date;
+    }
+};
+
+function createProgram(program, date){
+    return new Program(program, date)
+}

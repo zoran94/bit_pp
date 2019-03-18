@@ -7,9 +7,9 @@ function renderData(arr) {
             .text(post.title)
             .attr("data-post-id", post.id)
             .on("click", saveData);
-
-        $div.append($p);
-    });
+            $div.append($p);
+            console.log(post)
+        });
 
     $('body').append($div);
 }
@@ -22,12 +22,6 @@ function saveData(e) {
     localStorage.setItem("data-post-id", this.id);
     location.href = "./index2.html"
 };
-
-
-
-
-
-
 
 
 

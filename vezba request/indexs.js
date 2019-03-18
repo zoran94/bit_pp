@@ -1,24 +1,25 @@
 
-function renderJustData() {
-    var $div = $("<div>");  // this is how element is created
 
+var body = $("body");
 
-    var p = $("<p>");
-    p.text(title);
-    $div.append(p);
-
-    $('body').append($div);
+function render(arr){
+    arr.forEach(element => {
+        var p = $("<p>");
+        p.text(element.body);
+        body.append(p)
+        console.log(element.name)
+    });
+    
 }
 
-
-
-var newRequest = $.ajax({
-    url: "https://jsonplaceholder.typicode.com/comments?posts/" + localStorage.getItem("id"),
-    method: "GET"
-}).then(function (data) {
-
-
-
-})
+    $.ajax({
+        url: "https://jsonplaceholder.typicode.com/comments?postId/" + localStorage.getItem("data-post-id")
+        
+    }).then(function (data) {
+        
+     render(data);
+      
+    })
+    
 
 

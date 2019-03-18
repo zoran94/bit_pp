@@ -7,74 +7,82 @@
         this.name = name;
         this.surname = surname;
 
-        this.getDataPerson = function () {
-            return this.name + " " + this.surname;
-        }
     };
+
+    Person.prototype.getDataPerson = function () {
+        return this.name + " " + this.surname;
+    }
 
     function Seat(number, category) {
         this.number = number || Math.round(Math.random() * 100) + 10;
         this.category = category || "economy";
 
-        this.getDataSeat = function () {
-            return this.number + ", " + this.category;
-        }
     };
+
+    Seat.prototype.getDataSeat = function () {
+        return this.number + ", " + this.category;
+    }
 
     function Passenger(person, seat) {
-
-        this.getDataPassenger = function () {
-            return seat.getDataSeat().toUpperCase() + ", " + person.getDataPerson();
-        }
+        this.seat = seat;
+        this.person = person;
     };
+
+    Passenger.prototype.getDataPassenger = function () {
+        return this.seat.getDataSeat().toUpperCase() + ", " + this.person.getDataPerson();
+    }
+
 
     function Flight(relation, date) {
         this.relation = relation;
         this.date = new Date(date).toLocaleDateString();
         this.passengerList = [];
 
-        this.addPassenger = function (passenger) {
-            this.passengerList.push(passenger);
+    };
 
-            if(this.passengerList.length > 100){
-                return "there are no seats"
-            };
+    Flight.prototype.addPassenger = function (passenger) {
+        this.passengerList.push(passenger);
 
-
+        if (this.passengerList.length > 100) {
+            return "there are no seats"
         };
 
 
-
-        this.getDataFlight = function () {
-            var allPassengers = "";
-            for (var i = 0; i < this.passengerList.length; i++) {
-                allPassengers += "\n\t" + this.passengerList[i].getDataPassenger();
-            }
-            return "\n" + "\n\t" + this.date + ", " + "\n\t" + this.relation + "\n" + allPassengers;
-
-        }
     };
+
+    Flight.prototype.getDataFlight = function () {
+        var allPassengers = "";
+        for (var i = 0; i < this.passengerList.length; i++) {
+            allPassengers += "\n\t" + this.passengerList[i].getDataPassenger();
+        }
+        return "\n" + "\n\t" + this.date + ", " + "\n\t" + this.relation + "\n" + allPassengers;
+
+    }
+
 
 
     function Airport() {
         this.name = "Nikola Tesla";
         this.flightList = [];
 
-        this.addFlight = function (flights) {
-            this.flightList.push(flights);
-        };
-
-        this.getDataAirport = function () {
-            var totalPassengers = 0;
-            var allFlights = ""
-            for (var i = 0; i < this.flightList.length; i++) {
-                totalPassengers += this.flightList[i].passengerList.length;
-                allFlights += this.flightList[i].getDataFlight();
-
-            }
-            return "Airport : " + this.name + " " + "total passengers :" + totalPassengers + " \n" + allFlights;
-        }
     };
+
+
+    Airport.prototype.addFlight = function (flights) {
+        this.flightList.push(flights);
+    };
+
+    Airport.prototype.getDataAirport = function () {
+        var totalPassengers = 0;
+        var allFlights = ""
+        for (var i = 0; i < this.flightList.length; i++) {
+            totalPassengers += this.flightList[i].passengerList.length;
+            allFlights += this.flightList[i].getDataFlight();
+
+        }
+        return "Airport : " + this.name + " " + "total passengers :" + totalPassengers + " \n" + allFlights;
+    }
+
 
 
 

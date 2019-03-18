@@ -5,71 +5,70 @@
     function Genre(name) {
         this.name = name;
 
-        this.getData = function () {
-            return this.name.charAt(0).toUpperCase() + "" + this.name[this.name.length - 1].toUpperCase();
-        };
-    };
 
+    };
+    Genre.prototype.getData = function () {
+        return this.name.charAt(0).toUpperCase() + "" + this.name[this.name.length - 1].toUpperCase();
+    };
 
     function Movie(title, length, genre) {
         this.title = title;
         this.length = length;
-
-        this.getData = function () {
-            return this.title + ", " + this.length + "min, " + genre.getData();
-        };
+        this.genre = genre;
 
     };
 
+    Movie.prototype.getData = function () {
+        return this.title + ", " + this.length + "min, " + this.genre.getData();
+    };
 
     function Program(date) {
         this.date = new Date(date).toLocaleDateString();
         this.movieList = [];
         this.totalNumOfMovies = 0;
 
-        this.addMovie = function (movie) {
-            this.movieList.push(movie);
-            this.totalNumOfMovies++;
-        };
-
-        this.getData = function () {
-            var movieLength = 0;
-            var formatedStr = "";
-
-            for (var i = 0; i < this.movieList.length; i++) {
-                movieLength += this.movieList[i].length;
-                formatedStr += this.movieList[i].getData() + "\n"
-
-            };
-
-            return this.date + ", " + "program duration " + movieLength + "\n" + formatedStr;
-        }
     };
 
+    Program.prototype.addMovie = function (movie) {
+        this.movieList.push(movie);
+        this.totalNumOfMovies++;
+    };
+
+    Program.prototype.getData = function () {
+        var movieLength = 0;
+        var formatedStr = "";
+
+        for (var i = 0; i < this.movieList.length; i++) {
+            movieLength += this.movieList[i].length;
+            formatedStr += this.movieList[i].getData() + "\n"
+
+        };
+
+        return this.date + ", " + "program duration " + movieLength + "\n" + formatedStr;
+    }
 
     function Festival(name) {
         this.name = name;
         this.programList = [];
 
-
-        this.addProgram = function (program) {
-            this.programList.push(program);
-
-        };
-
-        this.getData = function () {
-
-            var sentence = 0;
-            var sentenceTwo = "";
-            for (var i = 0; i < this.programList.length; i++) {
-                sentence += this.programList[i].totalNumOfMovies;
-                sentenceTwo += this.programList[i].getData() + "\n";
-
-            };
-            console.log(this.name + " has " + sentence + " movie titles \n" + sentenceTwo)
-        }
+    };
+    Festival.prototype.addProgram = function (program) {
+        this.programList.push(program);
 
     };
+    Festival.prototype.getData = function () {
+
+        var sentence = 0;
+        var sentenceTwo = "";
+        for (var i = 0; i < this.programList.length; i++) {
+            sentence += this.programList[i].totalNumOfMovies;
+            sentenceTwo += this.programList[i].getData() + "\n";
+
+        };
+        console.log(this.name + " has " + sentence + " movie titles \n" + sentenceTwo)
+    }
+
+
 
 
     var action = new Genre("action");

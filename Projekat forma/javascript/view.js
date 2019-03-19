@@ -1,29 +1,29 @@
-var $movie = document.querySelector(".movie");
-var $length = document.querySelector(".length");
-var $genre = document.querySelector("select");
-var $button = document.querySelector("button");
-var $moviesList = document.querySelector(".right");
-var $getDiv = document.querySelector(".er");
+const $movie = document.querySelector(".movie");
+const $length = document.querySelector(".length");
+const $genre = document.querySelector("select");
+const $button = document.querySelector("button");
+const $moviesList = document.querySelector(".right");
+const $getDiv = document.querySelector(".er");
 
-var $select = document.querySelector("#select-movie")
+const $select = document.querySelector("#select-movie")
 
 function renderMovie(arr) {
     $moviesList.textContent = "";
-    $select .textContent = "";
-    for (var i = 0; i < arr.length; i++) {
-        var p = document.createElement("p");
+    $select.textContent = "";
+    for (let i = 0; i < arr.length; i++) {
+        const p = document.createElement("p");
         p.textContent = arr[i].getData();
         $moviesList.appendChild(p);
-        var options = document.createElement("option");
+        const options = document.createElement("option");
         options.textContent = arr[i].getData();
         $select.appendChild(options)
-       
+
     }
 
-    var allMovies = 0;
-    for(var i = 0; i < movies.length; i++){
-        allMovies+=parseInt(movies[i].length);
-        var movieLen = document.querySelector(".movie-length");
+    let allMovies = 0;
+    for (let i = 0; i < movies.length; i++) {
+        allMovies += parseInt(movies[i].length);
+        const movieLen = document.querySelector(".movie-length");
         movieLen.textContent = allMovies;
     }
 
@@ -48,7 +48,7 @@ function clearMovie() {
 
 function printError() {
     $getDiv.classList.add("error")
-    var par = document.createElement("p");
+    const par = document.createElement("p");
     par.textContent = "Please, fill out this form!"
     $getDiv.appendChild(par);
 };
@@ -65,12 +65,12 @@ function clear() {
 
 // rendering program
 
-var allPrograms = [];
+let allPrograms = [];
 
-var $button2 = document.querySelector(".submitP");
-var $program = document.querySelector(".program");
-var $date = document.querySelector(".date");
-var $selectOpt = document.querySelector(".select-program")
+const $button2 = document.querySelector(".submitP");
+const $program = document.querySelector(".program");
+const $date = document.querySelector(".date");
+const $selectOpt = document.querySelector(".select-program")
 
 function getProgramData() {
 
@@ -85,27 +85,27 @@ function clearProgram() {
 
     $program.value = "";
     $date.value = "";
-   
+
 };
 
 
-function renderProgram(arr){
+function renderProgram(arr) {
     $selectOpt.textContent = "";
-    for(var i = 0; i < arr.length; i++){
+    for (let i = 0; i < arr.length; i++) {
 
-        var createOpt = document.createElement("option");
+        const createOpt = document.createElement("option");
         createOpt.textContent = arr[i].getDataProgram();
         $selectOpt.appendChild(createOpt);
 
     }
 }
 
-function onCreateProgram(e){
+function onCreateProgram(e) {
     e.preventDefault();
 
 
-    var programData = getProgramData();
-    var makeProgram = createProgram(programData.program, programData.date);
+    const programData = getProgramData();
+    const makeProgram = createProgram(programData.program, programData.date);
     allPrograms.push(makeProgram);
     renderProgram(allPrograms);
     //console.log(renderProgram);
@@ -117,7 +117,7 @@ $button2.addEventListener("click", onCreateProgram);
 
 
 
-var $addMovie = document.querySelector("#addMovie");
+const $addMovie = document.querySelector("#addMovie");
 
 
 

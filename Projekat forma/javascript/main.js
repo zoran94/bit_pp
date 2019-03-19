@@ -1,5 +1,5 @@
 
-var movies = [];
+let movies = [];
 
 function onCreateMovie(e) {
     e.preventDefault();
@@ -8,14 +8,14 @@ function onCreateMovie(e) {
         printError();
     } else {
         clear();
-        var movieData = getMovieData()
-        var makeMovie = createMovie(movieData.title, movieData.length, movieData.genre);
+        let movieData = getMovieData()
+        const makeMovie = createMovie(movieData.title, movieData.length, movieData.genre);
         movies.push(makeMovie);
         renderMovie(movies);
         console.log(movies)
         clearMovie();
     }
-    
+
 };
 $button.addEventListener("click", onCreateMovie);
 

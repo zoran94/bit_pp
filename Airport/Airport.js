@@ -2,7 +2,6 @@
 
 (function () {
 
-
     function Person(name, surname) {
         this.name = name;
         this.surname = surname;
@@ -10,17 +9,17 @@
     };
 
     Person.prototype.getDataPerson = function () {
-        return this.name + " " + this.surname;
+        return `${this.name} ${this.surname}`;
     }
 
-    function Seat(number, category) {
-        this.number = number || Math.round(Math.random() * 100) + 10;
-        this.category = category || "economy";
+    function Seat(number = Math.round(Math.random() * 100) + 10, category = "economy") {
+        this.number = number;
+        this.category = category;
 
     };
 
     Seat.prototype.getDataSeat = function () {
-        return this.number + ", " + this.category;
+        return `${this.number}, ${this.category}`;
     }
 
     function Passenger(person, seat) {
@@ -29,7 +28,7 @@
     };
 
     Passenger.prototype.getDataPassenger = function () {
-        return this.seat.getDataSeat().toUpperCase() + ", " + this.person.getDataPerson();
+        return `${this.seat.getDataSeat().toUpperCase()}, ${this.person.getDataPerson()}`;
     }
 
 
@@ -44,25 +43,25 @@
         this.passengerList.push(passenger);
 
         if (this.passengerList.length > 100) {
-            return "there are no seats"
+            return `there are no seats`
         };
 
 
     };
 
     Flight.prototype.getDataFlight = function () {
-        var allPassengers = "";
-        for (var i = 0; i < this.passengerList.length; i++) {
+        let allPassengers = "";
+        for (let i = 0; i < this.passengerList.length; i++) {
             allPassengers += "\n\t" + this.passengerList[i].getDataPassenger();
         }
-        return "\n" + "\n\t" + this.date + ", " + "\n\t" + this.relation + "\n" + allPassengers;
+        return `\n  \n\t ${this.date}, \n\t ${this.relation} \n ${allPassengers}`;
 
     }
 
 
 
     function Airport() {
-        this.name = "Nikola Tesla";
+        this.name = `Nikola Tesla`;
         this.flightList = [];
 
     };
@@ -73,14 +72,14 @@
     };
 
     Airport.prototype.getDataAirport = function () {
-        var totalPassengers = 0;
-        var allFlights = ""
-        for (var i = 0; i < this.flightList.length; i++) {
+        let totalPassengers = 0;
+        let allFlights = ""
+        for (let i = 0; i < this.flightList.length; i++) {
             totalPassengers += this.flightList[i].passengerList.length;
             allFlights += this.flightList[i].getDataFlight();
 
         }
-        return "Airport : " + this.name + " " + "total passengers :" + totalPassengers + " \n" + allFlights;
+        return `Airport : ${this.name} total passengers : ${totalPassengers} \n ${allFlights}`;
     }
 
 
@@ -99,30 +98,30 @@
 
 
 
-    var personOne = new Person("Jonnah", "Mormont");
-    var personeTwo = new Person("Barristan", "Selmy");
-    var personThree = new Person("Oberyn", "Martell");
-    var personFour = new Person("Russ", "Bolton");
+    const personOne = new Person("Jonnah", "Mormont");
+    const personeTwo = new Person("Barristan", "Selmy");
+    const personThree = new Person("Oberyn", "Martell");
+    const personFour = new Person("Russ", "Bolton");
 
-    var seatOne = new Seat();
-    var seatTwo = new Seat(15, "bussines");
-    var seatThree = new Seat(15, "economy");
-    var seatFour = new Seat(32);
+    const seatOne = new Seat();
+    const seatTwo = new Seat(15, "bussines");
+    const seatThree = new Seat(15, "economy");
+    const seatFour = new Seat(32);
 
-    var passengerOne = new CreatePassenger(personOne, seatThree);
-    var passengerTwo = new CreatePassenger(personFour, seatTwo);
-    var passengerThree = new CreatePassenger(personThree, seatOne);
-    var passengerFour = new CreatePassenger(personeTwo, seatFour);
+    const passengerOne = new CreatePassenger(personOne, seatThree);
+    const passengerTwo = new CreatePassenger(personFour, seatTwo);
+    const passengerThree = new CreatePassenger(personThree, seatOne);
+    const passengerFour = new CreatePassenger(personeTwo, seatFour);
 
-    var firstFlight = new CreateFlight("Belgrade-Moscow", "05.23.2018");
-    var secondFlight = new CreateFlight("Nis-Malme", "11.10.2018");
+    const firstFlight = new CreateFlight("Belgrade-Moscow", "05.23.2018");
+    const secondFlight = new CreateFlight("Nis-Malme", "11.10.2018");
 
     firstFlight.addPassenger(passengerOne);
     firstFlight.addPassenger(passengerTwo);
     secondFlight.addPassenger(passengerThree);
     secondFlight.addPassenger(passengerFour);
 
-    var nikolaTesla = new Airport();
+    let nikolaTesla = new Airport();
     nikolaTesla.addFlight(firstFlight);
     nikolaTesla.addFlight(secondFlight);
 

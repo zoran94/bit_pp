@@ -7,9 +7,9 @@ function renderData(arr) {
             .text(post.title)
             .attr("data-post-id", post.id)
             .on("click", saveData);
-            $div.append($p);
-            console.log(post)
-        });
+        $div.append($p);
+        console.log(post)
+    });
 
     $('body').append($div);
 }
